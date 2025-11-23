@@ -11,3 +11,7 @@ export function getNewAPI () {
 export function getHotAPI () {
   return http.get('/home/hot')
 }
+
+export const getGoodsAPI = () => {
+    return http.get('/home/goods')
+}
