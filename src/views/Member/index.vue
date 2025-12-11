@@ -8,6 +8,9 @@
         <div class="links">
           <RouterLink to="/member">个人中心</RouterLink>
         </div>
+        <div class="links">
+          <RouterLink to="/member/coupon">我的优惠卷</RouterLink>
+        </div>
         <h4>交易管理</h4>
         <div class="links">
           <RouterLink to="/member/order">我的订单</RouterLink>
