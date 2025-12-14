@@ -2,16 +2,28 @@
 import {createOrderAPI, getCheckInfoAPI} from '@/apis/checkout'
 import { onMounted, ref } from 'vue';
 import router from "@/router";
+import { getAvailableCouponsAPI } from '@/apis/coupon';
+import CouponCard from '@/components/Coupon/index.vue' 
 const checkInfo = ref({})  // 订单对象
 const curAddress = ref({})  // 地址对象
+const availableCoupons = ref([]) // 可用优惠卷
 const getCheckInfo = async () => {
   const res = await getCheckInfoAPI()
   checkInfo.value = res.result
   const item = checkInfo.value.userAddresses.find(item => item.isDefault === 0)
   curAddress.value = item
 }
+//获取可用优惠卷
+const getAvailableCoupons = async () => {
+  const res = await getAvailableCouponsAPI(checkInfo.value.summary)
+  availableCoupons.value = res.result
+  // console.log(availableCoupons.value);
+  
+}
+
 onMounted(()=>{
-  getCheckInfo()
+  getCheckInfo();
+  getAvailableCoupons();
 })
 const showDialog = ref(false)
 const activeAddress = ref({})
@@ -104,6 +116,18 @@ const createOrder = async () => {
               </tr>
             </tbody>
           </table>
+        </div>
+        <!-- 可选优惠卷-->
+        <h3 class="box-title">可选优惠卷</h3>
+        <div class="box-body">
+          <div class="coupon-container">
+            <CouponCard 
+              v-for="coupon in availableCoupons" 
+              :key="coupon.id" 
+              :coupon="coupon"
+              activeTab="1"
+            />
+          </div>
         </div>
         <!-- 配送时间 -->
         <h3 class="box-title">配送时间</h3>
@@ -355,6 +379,12 @@ const createOrder = async () => {
   text-align: right;
   padding: 60px;
   border-top: 1px solid #f5f5f5;
+}
+
+.coupon-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .addressWrapper {
