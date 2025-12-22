@@ -58,7 +58,7 @@ const doLogin = () => {
     <header class="login-header">
       <div class="container m-top-20">
         <h1 class="logo">
-          <RouterLink to="/">天狗商城</RouterLink>
+          <RouterLink to="/">EasyBuy电商</RouterLink>
         </h1>
         <RouterLink class="entry" to="/">
           进入网站首页
@@ -104,7 +104,7 @@ const doLogin = () => {
           <a href="javascript:;">搜索推荐</a>
           <a href="javascript:;">友情链接</a>
         </p>
-        <p>CopyRight &copy; 天狗商城</p>
+        <p>CopyRight &copy; EasyBuy电商</p>
       </div>
     </footer>
   </div>
@@ -129,7 +129,7 @@ const doLogin = () => {
       height: 132px;
       width: 100%;
       text-indent: -9999px;
-      background: url("@/assets/images/logo.png") no-repeat center 18px / contain;
+      background: url("@/assets/images/image.png") no-repeat center 18px / contain;
     }
   }
 
